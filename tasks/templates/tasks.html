@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center display-3 py-5">{{ title }}</h1>
+
+            <ul class="list-group">
+                {% for task in tasks %}
+                <a class="list-group-item" href="{% url 'task_detail' task.id %}">
+                    <header class="d-flex justify-content-between">
+                        {% if task.important %}
+                        <h1 class="fw-bold text-success">{{ task.title }} </h1>
+                        <p>{{ task.user.username }}</p>
+                        {% else %}
+                        <h1 class="fw-bold">{{ task.title }}</h1>
+                        {% endif %}
+                    </header>
+
+                    <p>{{ task.description }}</p>
+
+                    <!-- The vertical bar | in the template tag is used to apply a filter to the value on the left -->
+                    <!-- date: This is the name of the filter being applied -->
+                    <!-- 'M j Y:i': This is the argument passed to the date filter. It specifies the desired date and time format in a string format. Each character in this string has a specific meaning:
+
+                    M: Represents the abbreviated month (e.g., "Jan" for January).
+                    j: Represents the day of the month as a zero-padded decimal number (e.g., "01" for the 1st day).
+                    Y: Represents the year with century as a decimal number (e.g., "2023").
+                    i: Represents the minute as a zero-padded decimal number (e.g., "05" for 5 minutes past the hour). -->
+                    <p>{{ task.datecompleted|date:'M j Y:i' }}</p>
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</main>
+
+
+
+
+{% endblock %}

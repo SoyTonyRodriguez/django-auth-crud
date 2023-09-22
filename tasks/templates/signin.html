@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form action="" method="POST" class="card card-body mt-5">
+
+                <h1 class="text-center">Sign in</h1>
+                {{ error }}
+
+                <!-- For CSRF verification -->
+                {% csrf_token %}
+
+                <!-- Creando el formulario manualmente para aplicar estilos con Bootstrap -->
+                <div class="mb-3">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" class="form-control"
+                        placeholder="Write your username">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" class="form-control"
+                        placeholder="Write your password">
+                </div>
+
+                <!-- as_p: To each field should be in a <p></p> tag -->
+                <!-- {{ form.as_p }} -->
+
+                <button class="btn btn-primary">
+                    Sign up
+                </button>
+
+            </form>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}
